@@ -1,0 +1,469 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 100C Model Setup 'clk'
+Slack : -236.942
+TNS   : -55452.125
+
+Type  : Slow 1100mV 100C Model Setup 'Kernel_block:kernel_int|count_3[0]'
+Slack : -17.017
+TNS   : -204.557
+
+Type  : Slow 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : -6.793
+TNS   : -138.266
+
+Type  : Slow 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -6.558
+TNS   : -108.429
+
+Type  : Slow 1100mV 100C Model Setup 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : -6.504
+TNS   : -125.949
+
+Type  : Slow 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : -6.404
+TNS   : -94.800
+
+Type  : Slow 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : -6.039
+TNS   : -209.486
+
+Type  : Slow 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : -5.025
+TNS   : -79.773
+
+Type  : Slow 1100mV 100C Model Setup 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -2.520
+TNS   : -32.247
+
+Type  : Slow 1100mV 100C Model Hold 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -51.242
+TNS   : -763.405
+
+Type  : Slow 1100mV 100C Model Hold 'clk'
+Slack : -4.092
+TNS   : -141.770
+
+Type  : Slow 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -0.960
+TNS   : -2.246
+
+Type  : Slow 1100mV 100C Model Hold 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : 0.898
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : 1.331
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : 1.430
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : 1.696
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : 2.950
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Hold 'Kernel_block:kernel_int|count_3[0]'
+Slack : 4.091
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Recovery 'clk'
+Slack : -1.726
+TNS   : -397.785
+
+Type  : Slow 1100mV 100C Model Removal 'clk'
+Slack : -3.536
+TNS   : -161.535
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -49.927
+TNS   : -212183.001
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'clk'
+Slack : -2.636
+TNS   : -5558.353
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'Kernel_block:kernel_int|count_3[0]'
+Slack : -0.243
+TNS   : -0.578
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -0.135
+TNS   : -0.488
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : -0.122
+TNS   : -0.185
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : -0.107
+TNS   : -0.770
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : -0.024
+TNS   : -0.061
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : 0.210
+TNS   : 0.000
+
+Type  : Slow 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : 0.214
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Setup 'clk'
+Slack : -251.269
+TNS   : -57528.257
+
+Type  : Slow 1100mV -40C Model Setup 'Kernel_block:kernel_int|count_3[0]'
+Slack : -17.892
+TNS   : -214.712
+
+Type  : Slow 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : -6.939
+TNS   : -143.938
+
+Type  : Slow 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -6.860
+TNS   : -114.708
+
+Type  : Slow 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : -6.789
+TNS   : -100.312
+
+Type  : Slow 1100mV -40C Model Setup 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : -6.658
+TNS   : -131.509
+
+Type  : Slow 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : -6.225
+TNS   : -222.231
+
+Type  : Slow 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : -5.354
+TNS   : -85.826
+
+Type  : Slow 1100mV -40C Model Setup 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -2.942
+TNS   : -37.356
+
+Type  : Slow 1100mV -40C Model Hold 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -55.281
+TNS   : -823.753
+
+Type  : Slow 1100mV -40C Model Hold 'clk'
+Slack : -4.266
+TNS   : -180.765
+
+Type  : Slow 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -0.989
+TNS   : -2.754
+
+Type  : Slow 1100mV -40C Model Hold 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : 0.660
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : 1.181
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : 1.395
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : 1.882
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : 3.078
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Hold 'Kernel_block:kernel_int|count_3[0]'
+Slack : 4.390
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Recovery 'clk'
+Slack : -1.612
+TNS   : -354.005
+
+Type  : Slow 1100mV -40C Model Removal 'clk'
+Slack : -3.744
+TNS   : -179.669
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -54.207
+TNS   : -231980.905
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'clk'
+Slack : -2.636
+TNS   : -5585.774
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'Kernel_block:kernel_int|count_3[0]'
+Slack : -0.148
+TNS   : -0.303
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : -0.095
+TNS   : -0.172
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : -0.087
+TNS   : -0.458
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -0.061
+TNS   : -0.088
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : 0.034
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : 0.225
+TNS   : 0.000
+
+Type  : Slow 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : 0.230
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Setup 'clk'
+Slack : -118.356
+TNS   : -28621.594
+
+Type  : Fast 1100mV 100C Model Setup 'Kernel_block:kernel_int|count_3[0]'
+Slack : -7.882
+TNS   : -95.908
+
+Type  : Fast 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : -3.447
+TNS   : -62.280
+
+Type  : Fast 1100mV 100C Model Setup 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : -3.343
+TNS   : -57.423
+
+Type  : Fast 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -3.064
+TNS   : -47.109
+
+Type  : Fast 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : -2.799
+TNS   : -39.888
+
+Type  : Fast 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : -2.698
+TNS   : -84.100
+
+Type  : Fast 1100mV 100C Model Setup 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : -2.150
+TNS   : -29.874
+
+Type  : Fast 1100mV 100C Model Setup 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -0.906
+TNS   : -9.755
+
+Type  : Fast 1100mV 100C Model Hold 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -23.805
+TNS   : -354.781
+
+Type  : Fast 1100mV 100C Model Hold 'clk'
+Slack : -2.050
+TNS   : -54.927
+
+Type  : Fast 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -0.571
+TNS   : -1.493
+
+Type  : Fast 1100mV 100C Model Hold 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : 0.386
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : 0.548
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : 0.553
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : 0.705
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Hold 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : 1.552
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Hold 'Kernel_block:kernel_int|count_3[0]'
+Slack : 1.920
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Recovery 'clk'
+Slack : -0.579
+TNS   : -56.734
+
+Type  : Fast 1100mV 100C Model Removal 'clk'
+Slack : -1.831
+TNS   : -79.176
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -23.106
+TNS   : -93517.355
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'clk'
+Slack : -2.174
+TNS   : -3936.926
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'Kernel_block:kernel_int|count_3[0]'
+Slack : -0.076
+TNS   : -0.131
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : -0.058
+TNS   : -0.087
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : -0.046
+TNS   : -0.162
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : -0.012
+TNS   : -0.024
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : 0.051
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : 0.231
+TNS   : 0.000
+
+Type  : Fast 1100mV 100C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : 0.258
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Setup 'clk'
+Slack : -105.230
+TNS   : -24527.015
+
+Type  : Fast 1100mV -40C Model Setup 'Kernel_block:kernel_int|count_3[0]'
+Slack : -7.150
+TNS   : -86.408
+
+Type  : Fast 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : -3.069
+TNS   : -57.630
+
+Type  : Fast 1100mV -40C Model Setup 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : -2.976
+TNS   : -53.165
+
+Type  : Fast 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -2.816
+TNS   : -44.677
+
+Type  : Fast 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : -2.627
+TNS   : -38.021
+
+Type  : Fast 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : -2.489
+TNS   : -81.810
+
+Type  : Fast 1100mV -40C Model Setup 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : -2.039
+TNS   : -30.234
+
+Type  : Fast 1100mV -40C Model Setup 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -0.907
+TNS   : -10.702
+
+Type  : Fast 1100mV -40C Model Hold 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -21.318
+TNS   : -317.675
+
+Type  : Fast 1100mV -40C Model Hold 'clk'
+Slack : -1.979
+TNS   : -71.164
+
+Type  : Fast 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : -0.459
+TNS   : -1.127
+
+Type  : Fast 1100mV -40C Model Hold 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : 0.369
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : 0.527
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : 0.538
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : 0.930
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Hold 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : 1.580
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Hold 'Kernel_block:kernel_int|count_3[0]'
+Slack : 2.009
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Recovery 'clk'
+Slack : -0.339
+TNS   : -19.954
+
+Type  : Fast 1100mV -40C Model Removal 'clk'
+Slack : -1.788
+TNS   : -83.103
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'caches:caches_int|Norm_avg:LABLE_AVGNORM|reg:LABLE_AddToReg_AvgNorm|q[10]'
+Slack : -20.696
+TNS   : -84762.517
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'clk'
+Slack : -2.174
+TNS   : -3937.994
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'Kernel_block:kernel_int|count_3[0]'
+Slack : 0.100
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|reset_CV_counters_after_avrg'
+Slack : 0.117
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'Classes:classes_int|NormCalculate:Norm_Wkblock|fifo2:LABEL5|ByteCounter[0]'
+Slack : 0.124
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_Norm_wkblock'
+Slack : 0.160
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|read_CVi_enable'
+Slack : 0.171
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|ReadEnable_fifo_AvgNorm'
+Slack : 0.300
+TNS   : 0.000
+
+Type  : Fast 1100mV -40C Model Minimum Pulse Width 'ControlUnit_seq:Controlunit_seq_int|max_min_enable'
+Slack : 0.324
+TNS   : 0.000
+
+------------------------------------------------------------

@@ -1,0 +1,195 @@
+Flow report for main1
+Thu Jun 28 04:39:08 2018
+Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Thu Jun 28 04:39:08 2018       ;
+; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Revision Name                   ; main1                                       ;
+; Top-level Entity Name           ; integration_final                           ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CSEBA6U23I7                                ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 9,144 / 41,910 ( 22 % )                     ;
+; Total registers                 ; 944                                         ;
+; Total pins                      ; 18 / 314 ( 6 % )                            ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 221,528 / 5,662,720 ( 4 % )                 ;
+; Total DSP Blocks                ; 13 / 112 ( 12 % )                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0 / 6 ( 0 % )                               ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 06/28/2018 02:54:19 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; main1               ;
++-------------------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                   ;
++--------------------------------------+----------------------------------------+---------------+-------------------+----------------+
+; Assignment Name                      ; Value                                  ; Default Value ; Entity Name       ; Section Id     ;
++--------------------------------------+----------------------------------------+---------------+-------------------+----------------+
+; COMPILER_SIGNATURE_ID                ; 198690280599436.153014725904812        ; --            ; --                ; --             ;
+; EDA_DESIGN_INSTANCE_NAME             ; DUT                                    ; --            ; --                ; tb             ;
+; EDA_ENABLE_GLITCH_FILTERING          ; On                                     ; --            ; --                ; eda_simulation ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; On                                     ; --            ; --                ; eda_simulation ;
+; EDA_MAP_ILLEGAL_CHARACTERS           ; On                                     ; --            ; --                ; eda_simulation ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb                                     ; --            ; --                ; eda_simulation ;
+; EDA_OUTPUT_DATA_FORMAT               ; Vhdl                                   ; --            ; --                ; eda_simulation ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (VHDL)                 ; <None>        ; --                ; --             ;
+; EDA_TEST_BENCH_DESIGN_INSTANCE_NAME  ; DUT                                    ; --            ; --                ; eda_simulation ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --                ; eda_simulation ;
+; EDA_TEST_BENCH_FILE                  ; simulation/modelsim/tb.v               ; --            ; --                ; tb             ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb                                     ; --            ; --                ; tb             ;
+; EDA_TEST_BENCH_NAME                  ; tb                                     ; --            ; --                ; eda_simulation ;
+; EDA_WRITE_NODES_FOR_POWER_ESTIMATION ; ALL_NODES                              ; --            ; --                ; eda_simulation ;
+; MAX_CORE_JUNCTION_TEMP               ; 100                                    ; --            ; --                ; --             ;
+; MIN_CORE_JUNCTION_TEMP               ; -40                                    ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_23x900.bsf                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_23x900_inst.vhd                    ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_23x900.inc                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_23x900.cmp                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_25x900.bsf                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_25x900_inst.vhd                    ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_25x900.inc                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_25x900.cmp                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_10x900.bsf                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_10x900_inst.vhd                    ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_10x900.inc                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_10x900.cmp                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_16x900.bsf                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_16x900_inst.vhd                    ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_16x900.inc                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; Mem_16x900.cmp                         ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X1_Mem.bsf                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X1_Mem_inst.vhd                      ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X1_Mem.inc                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X1_Mem.cmp                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X2_Mem.bsf                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X2_Mem_inst.vhd                      ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X2_Mem.inc                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X2_Mem.cmp                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X3_Mem.bsf                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X3_Mem_inst.vhd                      ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X3_Mem.inc                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C1X3_Mem.cmp                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X2_Mem.bsf                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X2_Mem_inst.vhd                      ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X2_Mem.inc                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X2_Mem.cmp                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X3_Mem.bsf                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X3_Mem_inst.vhd                      ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X3_Mem.inc                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X3_Mem.cmp                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X1_Mem.bsf                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X1_Mem_inst.vhd                      ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X1_Mem.inc                           ; --            ; --                ; --             ;
+; MISC_FILE                            ; C2X1_Mem.cmp                           ; --            ; --                ; --             ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --            ; integration_final ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --            ; integration_final ; Top            ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --            ; integration_final ; Top            ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --            ; --                ; --             ;
+; POWER_INPUT_FILE_NAME                ; simulation/modelsim/main1.vcd          ; --            ; integration_final ; main1.vcd      ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --                ; --             ;
+; POWER_REPORT_POWER_DISSIPATION       ; On                                     ; Off           ; --                ; --             ;
+; POWER_REPORT_SIGNAL_ACTIVITY         ; On                                     ; Off           ; --                ; --             ;
+; POWER_USE_INPUT_FILES                ; On                                     ; Off           ; --                ; --             ;
+; POWER_USE_PVA                        ; Off                                    ; On            ; --                ; --             ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                           ; --            ; --                ; --             ;
+; TOP_LEVEL_ENTITY                     ; integration_final                      ; main1         ; --                ; --             ;
++--------------------------------------+----------------------------------------+---------------+-------------------+----------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:56     ; 1.3                     ; 5063 MB             ; 00:01:28                           ;
+; Fitter                    ; 00:16:17     ; 1.1                     ; 6527 MB             ; 00:23:53                           ;
+; Assembler                 ; 00:00:20     ; 1.0                     ; 4967 MB             ; 00:00:17                           ;
+; TimeQuest Timing Analyzer ; 00:01:00     ; 1.7                     ; 5436 MB             ; 00:01:33                           ;
+; EDA Netlist Writer        ; 00:00:07     ; 1.0                     ; 4852 MB             ; 00:00:07                           ;
+; Power Analyzer            ; 00:00:43     ; 1.4                     ; 5524 MB             ; 00:00:58                           ;
+; Power Analyzer            ; 00:00:42     ; 1.4                     ; 5523 MB             ; 00:00:58                           ;
+; Total                     ; 00:20:05     ; --                      ; --                  ; 00:29:14                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                         ;
++---------------------------+------------------+------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++---------------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis      ; Mohamed-Hani     ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter                    ; Mohamed-Hani     ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler                 ; Mohamed-Hani     ; Windows 10 ; 10.0       ; x86_64         ;
+; TimeQuest Timing Analyzer ; Mohamed-Hani     ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer        ; Mohamed-Hani     ; Windows 10 ; 10.0       ; x86_64         ;
+; Power Analyzer            ; Mohamed-Hani     ; Windows 10 ; 10.0       ; x86_64         ;
+; Power Analyzer            ; Mohamed-Hani     ; Windows 10 ; 10.0       ; x86_64         ;
++---------------------------+------------------+------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off main1 -c main1
+quartus_fit --read_settings_files=off --write_settings_files=off main1 -c main1
+quartus_asm --read_settings_files=off --write_settings_files=off main1 -c main1
+quartus_sta main1 -c main1
+quartus_eda --read_settings_files=off --write_settings_files=off main1 -c main1
+quartus_pow --read_settings_files=on --write_settings_files=off main1 -c main1
+quartus_pow --read_settings_files=on --write_settings_files=off main1 -c main1
+
+
+
