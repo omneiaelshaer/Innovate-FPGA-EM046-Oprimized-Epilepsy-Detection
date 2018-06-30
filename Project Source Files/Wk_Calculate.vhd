@@ -1,0 +1,138 @@
+Library ieee;
+Use ieee.std_logic_1164.all;
+USE ieee.numeric_std.all; 
+
+Entity Wk_calculate is
+Generic (
+	Feature_Width	: integer := 17; 
+	Cache_Width	: integer := 23; 
+	Norm_Widht	: integer := 23; 
+	n 		: integer := 16
+);
+port(  
+	Cache_i_sig: IN signed(Cache_Width-1 downto 0);-- (11,12)
+        Cache_j_sig : IN signed(Cache_Width-1 downto 0); --(11,12)
+	Wknorm2 : IN signed(Norm_Widht-1 downto 0); --(15,8)
+	Norm2sij: IN signed(Norm_Widht-1 downto 0); --(15,8)
+	WkSelect: OUT std_logic_vector(1 downto 0);
+	lamda	: OUT std_logic_vector(n-1 downto 0);
+	Wk : OUT std_logic_vector(Norm_Widht-1 downto 0);
+	max_min_enable: in std_logic
+ 
+); --20 bit handling the over all overflow	
+	
+end entity Wk_calculate ;
+
+Architecture Wk_calculate_arch of Wk_calculate is
+
+-------COMPONENTS: ------
+Component comparator is
+Generic (n : integer := 16);
+port(   In1 : IN std_logic_vector(n-1 downto 0);--top
+	In2 : IN std_logic_vector(n-1 downto 0); --bot
+        Y : out std_logic_vector(1 downto 0)
+	
+	
+);
+end Component comparator;
+
+Component divider is
+Generic (input_width : integer := 16);
+port(
+	Q: in std_logic_vector(input_width-1 downto 0);
+	M: in std_logic_vector(input_width-1 downto 0);
+	Quo: out std_logic_vector(input_width-1 downto 0);
+	Remi: out std_logic_vector(input_width-1 downto 0)
+);
+end Component divider;
+Component BoothTop is
+port(
+	M: in std_logic_vector(15 downto 0);
+	Q: in std_logic_vector(15 downto 0);
+	Z: out std_logic_vector(31 downto 0)
+);
+end Component BoothTop;
+
+---------------------------
+
+SIGNAL wksijmul2sig: signed(Cache_Width downto 0); --24 bit (12,12)
+SIGNAL sigTop: signed(Cache_Width+3 downto 0);--27 bit(15,12)
+
+SIGNAL sigWksij: signed(Cache_Width-1 downto 0);--23 bit (11,12)
+SIGNAL sigBot:  signed(Cache_Width+3 downto 0);--27 bit(15,12)
+SIGNAL siglamda: std_logic_vector(34 downto 0);
+SIGNAL mulLamdaTop: std_logic_vector(42 downto 0);
+SIGNAL onSegPt: std_logic_vector(Norm_Widht-1 downto 0);
+SIGNAL remainder: std_logic_vector(34 downto 0);
+SIGNAL sigWkSelect: std_logic_vector(1 downto 0);
+
+signal Cast_sigTop:std_logic_vector(Cache_Width+3 downto 0);
+signal Cast_sigBot:std_logic_vector(Cache_Width+3 downto 0);--27
+signal test:std_logic_vector(Cache_Width+3 downto 0);
+
+signal Div_Cast_sigTop:std_logic_vector(34 downto 0);
+signal Div_Cast_sigBot:std_logic_vector(34 downto 0);
+
+signal sigtestWknorm2 :signed(Cache_Width+3 downto 0);
+signal Cache_i: signed(Cache_Width-1 downto 0);-- (11,12)
+signal Cache_j: signed(Cache_Width-1 downto 0);-- (11,12)
+
+Signal Square_sigTop: std_logic_vector(53 downto 0); --sigTop 27 bit then squared 54 bit (53 downto 0)(30,24)
+Signal Reminder_squareTop: std_logic_vector(53 downto 0); 
+Signal SquareDiv_Bot: std_logic_vector(53 downto 0); --(30,24)-->(15,8)
+signal Top2_Bot:std_logic_vector(53 downto 0); --54 bit(46,8) and downnto 16 bit (15,8)
+
+Begin
+
+Cache_i<= Cache_i_sig when max_min_enable='1';
+Cache_j<= Cache_j_sig when max_min_enable='1';
+
+
+sigWksij <= Cache_i - Cache_j; --23 bit (11,12)
+
+test<=std_logic_vector( resize(sigWksij,27));
+
+sigtestWknorm2<= Wknorm2&"0000";
+
+sigTop <= sigtestWknorm2 - signed(test); --27 bit(15,12)
+
+Cast_sigTop<=std_logic_vector(sigTop);
+
+wksijmul2sig <=  sigWksij&'0'; --23(11,12) *2 24(12,12)
+
+sigBot <= (Wknorm2&"0000")- resize(wksijmul2sig,27) + (Norm2sij&"0000");--27 bit (15,12)
+Cast_sigBot<=std_logic_vector(sigBot);
+
+--============================================
+Square_sigTop<=std_logic_vector(sigTop*sigTop);--squared signal (30,24)
+SquareDiv_Bot<=std_logic_vector("00000000000000000000000"&Cast_sigBot&"0000");--(38,16)
+--============================= COMPARISION:
+CompTopBot: comparator generic map(n=>27)port map(Cast_sigTop,Cast_sigBot,sigWkSelect);
+
+--============================= DIVIDER (find lamda):
+Div_Cast_sigTop<=std_logic_vector(Cast_sigTop&"00000000");
+Div_Cast_sigBot<=std_logic_vector("00000000"&Cast_sigBot);
+
+siglamdaport: divider generic map(input_width => 35) port map(Div_Cast_sigTop,Div_Cast_sigBot,siglamda,remainder); --lamda = top / bot (try top^2/bot if the final result is not accurate) 
+
+sigSquare: divider generic map(input_width => 54) port map(Square_sigTop,SquareDiv_Bot,Top2_Bot,Reminder_squareTop); --lamda = top / bot (try top^2/bot if the final result is not accurate) 
+
+
+lamda<=siglamda(15 downto 0); --(15,20) "with the integer part = 0, 14 an be ignored" (8,8)
+
+--============================= MULTIPLIER (lamda*top):
+--mulLamdaTop <= std_logic_vector(signed(siglamda(15 downto 0))*sigTop); --(8,8) X (15,12)=(23,20)
+
+--============================= SUBTRACTOR
+--onSegPt<= std_logic_vector(Wknorm2 - signed(mulLamdaTop(34 downto 12))); --23 bot(15,8)=(15,8)-(30,24)
+onSegPt<= std_logic_vector(Wknorm2 - signed(Top2_Bot(22 downto 0))); --
+
+--============================= MULTIPLIXER
+WKSelect <= sigWkSelect; 
+
+Wk 	<= onSegPt when sigWKSelect = "00" else
+	 std_logic_vector(Wknorm2) when sigWKSelect = "10" else
+	 std_logic_vector(Norm2sij) when sigWKSelect = "11" else
+	 (others=>'0');
+
+end Wk_calculate_arch;
