@@ -1,0 +1,145 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2017  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+# Date created = 16:01:10  May 18, 2018
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		main1_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEBA6U23I7
+set_global_assignment -name TOP_LEVEL_ENTITY integration_final
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:01:09  MAY 18, 2018"
+set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name DEVICE_FILTER_PACKAGE UFBGA
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_location_assignment PIN_V11 -to clk
+set_location_assignment PIN_V12 -to b[0]
+set_location_assignment PIN_E8 -to b[1]
+set_location_assignment PIN_W12 -to b[2]
+set_location_assignment PIN_D11 -to b[3]
+set_location_assignment PIN_D8 -to b[4]
+set_location_assignment PIN_AH13 -to b[5]
+set_location_assignment PIN_AF7 -to b[6]
+set_location_assignment PIN_AH14 -to b[7]
+set_location_assignment PIN_AF4 -to b[8]
+set_location_assignment PIN_AH3 -to b[9]
+set_location_assignment PIN_AD5 -to b[10]
+set_location_assignment PIN_AG14 -to b[11]
+set_location_assignment PIN_AE23 -to b[12]
+set_location_assignment PIN_AE6 -to b[13]
+set_location_assignment PIN_AD23 -to b[14]
+set_location_assignment PIN_AE24 -to b[15]
+set_location_assignment PIN_AH17 -to reset
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name EDA_MAP_ILLEGAL_CHARACTERS ON -section_id eda_simulation
+set_global_assignment -name EDA_ENABLE_GLITCH_FILTERING ON -section_id eda_simulation
+set_global_assignment -name EDA_WRITE_NODES_FOR_POWER_ESTIMATION ALL_NODES -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_DESIGN_INSTANCE_NAME DUT -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME DUT -section_id tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb -section_id tb
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
+set_global_assignment -name POWER_USE_INPUT_FILES ON
+set_global_assignment -name POWER_DEFAULT_TOGGLE_RATE 12.5%
+set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE 12.5%
+set_global_assignment -name POWER_USE_PVA OFF
+set_global_assignment -name POWER_REPORT_SIGNAL_ACTIVITY ON
+set_global_assignment -name POWER_REPORT_POWER_DISSIPATION ON
+set_global_assignment -name POWER_INPUT_FILE_NAME simulation/modelsim/main1.vcd -section_id main1.vcd
+set_instance_assignment -name POWER_READ_INPUT_FILE main1.vcd -to integration_final
+set_global_assignment -name VHDL_FILE cachAcc.vhd
+set_global_assignment -name VHDL_FILE caches.vhd
+set_global_assignment -name VHDL_FILE ControlUnit_seq.vhd
+set_global_assignment -name VHDL_FILE integration_final.vhd
+set_global_assignment -name VERILOG_FILE ../hamada/sqrt.v
+set_global_assignment -name VERILOG_FILE ../hamada/divider.v
+set_global_assignment -name VERILOG_FILE ../hamada/BoothTop.v
+set_global_assignment -name VERILOG_FILE ../hamada/booth.v
+set_global_assignment -name VHDL_FILE Wk_Calculate.vhd
+set_global_assignment -name VHDL_FILE reg.vhd
+set_global_assignment -name VHDL_FILE NormCalculate.vhd
+set_global_assignment -name VHDL_FILE Norm_Avg.vhd
+set_global_assignment -name VHDL_FILE nbit_adder.vhd
+set_global_assignment -name VHDL_FILE mux4x1.vhd
+set_global_assignment -name VHDL_FILE mux2x1.vhd
+set_global_assignment -name VHDL_FILE MinimReg.vhd
+set_global_assignment -name VHDL_FILE MaximReg.vhd
+set_global_assignment -name VHDL_FILE Kernal_block.vhd
+set_global_assignment -name VHDL_FILE Gilbert_SVM.vhd
+set_global_assignment -name VHDL_FILE GetMin.vhd
+set_global_assignment -name VHDL_FILE GetMax.vhd
+set_global_assignment -name VHDL_FILE fifo_new_2.vhd
+set_global_assignment -name VHDL_FILE exp_lut.vhd
+set_global_assignment -name VHDL_FILE DotProduct.vhd
+set_global_assignment -name VHDL_FILE datamem_fifo_2.vhd
+set_global_assignment -name VHDL_FILE data_memo.vhd
+set_global_assignment -name VHDL_FILE CVmonitor.vhd
+set_global_assignment -name VHDL_FILE CV.vhd
+set_global_assignment -name VHDL_FILE CtildeUpdate.vhd
+set_global_assignment -name VHDL_FILE comparator_Caches.vhd
+set_global_assignment -name VHDL_FILE comparator.vhd
+set_global_assignment -name VHDL_FILE bithalfadder.vhd
+set_global_assignment -name VHDL_FILE bitfulladder.vhd
+set_global_assignment -name VHDL_FILE B4Kernel.vhd
+set_global_assignment -name VHDL_FILE alphabetaMem.vhd
+set_global_assignment -name QIP_FILE Mem_23x900.qip
+set_global_assignment -name QIP_FILE Mem_25x900.qip
+set_global_assignment -name QIP_FILE Mem_10x900.qip
+set_global_assignment -name QIP_FILE Mem_16x900.qip
+set_global_assignment -name QIP_FILE C1X1_Mem.qip
+set_global_assignment -name QIP_FILE C1X2_Mem.qip
+set_global_assignment -name MIF_FILE c1x1_memo.mif
+set_global_assignment -name MIF_FILE c1x2_memo.mif
+set_global_assignment -name MIF_FILE c1x3_memo.mif
+set_global_assignment -name MIF_FILE c2x1_memo.mif
+set_global_assignment -name MIF_FILE c2x2_memo.mif
+set_global_assignment -name MIF_FILE c2x3_memo.mif
+set_global_assignment -name QIP_FILE C1X3_Mem.qip
+set_global_assignment -name QIP_FILE C2X2_Mem.qip
+set_global_assignment -name QIP_FILE C2X3_Mem.qip
+set_global_assignment -name QIP_FILE C2X1_Mem.qip
+set_global_assignment -name EDA_TEST_BENCH_FILE simulation/modelsim/tb.v -section_id tb
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

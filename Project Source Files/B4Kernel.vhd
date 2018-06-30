@@ -1,0 +1,114 @@
+--This part includes:
+-- 1-reg and Mux before kernel
+-- 2-Exponential
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+Entity B4_Kernel is
+Generic (n : integer := 17);
+port (
+clk : in std_logic;
+
+Feature1_Class1_Data  : in std_logic_vector(n-1 downto 0);   --fx1
+Feature2_Class1_Data  : in std_logic_vector(n-1 downto 0);   --fx2
+Feature3_Class1_Data  : in std_logic_vector(n-1 downto 0);   --fx3
+
+Feature1_Class2_Data  : in std_logic_vector(n-1 downto 0);   --fy1
+Feature2_Class2_Data  : in std_logic_vector(n-1 downto 0);   --fy2
+Feature3_Class2_Data  : in std_logic_vector(n-1 downto 0);   --fy3
+
+----------------------Kernel Relative Point Features Reg Signals----------------------
+reg_reset_Kernel_RelativePoint_F   : in std_logic;
+reg_enable_Kernel_RelativePoint_F  : in std_logic;
+
+Kernal_RelativePoint_Mux_3Feature_Selc : in std_logic_vector(1 downto 0); --choose which Feature to pass to kernel F1. F2 or F3
+--------------------Kernel class Features Reg Signals-------------------------
+Kernal_classF_Mux_Selc: in std_logic;
+
+reg_reset_Kernel_classF    : in std_logic;
+reg_enable_Kernel_classF   : in std_logic;
+
+Kernal_class_Mux_3Feature_Selc : in std_logic_vector(1 downto 0); --choose which  class Feature to pass to kernel F1. F2 or F3
+------ outputs------
+
+Kernal_classFeature_Mux_dataOut: out std_logic_vector(n-1 downto 0);-- F1, F2 or F3 of the classes point
+Kernal_RelativePoint_Mux_dataOut:out std_logic_vector(n-1 downto 0)-- F1, F2 or F3 of the relative point
+
+
+);
+end entity B4_Kernel;
+
+architecture B4_Kernel_arch of B4_Kernel is
+----------------------------------------------------------
+component reg is
+generic(n:integer:=16);
+port(clk,rst,wenable:in std_logic;
+d:in std_logic_vector(n-1 downto 0);
+q:out std_logic_vector(n-1 downto 0)
+);
+end component;
+-----------------------------------------------------------
+component mux4x1 is
+Generic (n:integer);
+port(
+d1:in std_logic_vector(n-1 downto 0);
+d2:in std_logic_vector(n-1 downto 0);
+d3:in std_logic_vector(n-1 downto 0);
+d4:in std_logic_vector(n-1 downto 0);
+s:in std_logic_vector(1 downto 0);
+q:out std_logic_vector(n-1 downto 0));
+end component;
+-----------------------------------------------------------
+component mux2x1 is
+Generic (n:integer);
+port(
+d1:in std_logic_vector(n-1 downto 0);
+d2:in std_logic_vector(n-1 downto 0);
+s:in std_logic;
+q:out std_logic_vector(n-1 downto 0)
+);
+end component;
+-----------------------------------------------------------
+signal FX1_Y1_Diff: std_logic_vector(n-1 downto 0);
+signal FX2_Y2_Diff: std_logic_vector(n-1 downto 0);
+signal FX3_Y3_Diff: std_logic_vector(n-1 downto 0);
+
+signal FX1_Y1_AfterReg: std_logic_vector(n-1 downto 0);
+signal FX2_Y2_AfterReg: std_logic_vector(n-1 downto 0);
+signal FX3_Y3_AfterReg: std_logic_vector(n-1 downto 0);
+
+
+signal Kernal_classF1_Mux_dataOut: std_logic_vector(n-1 downto 0);
+signal Kernal_classF2_Mux_dataOut: std_logic_vector(n-1 downto 0);
+signal Kernal_classF3_Mux_dataOut: std_logic_vector(n-1 downto 0);
+
+signal Kernal_classF1_Reg_dataOut: std_logic_vector(n-1 downto 0);
+signal Kernal_classF2_Reg_dataOut: std_logic_vector(n-1 downto 0);
+signal Kernal_classF3_Reg_dataOut: std_logic_vector(n-1 downto 0);
+
+begin
+----------------------------------------------subtracting Features of the two classes--------------------------------------------------
+FX1_Y1_Diff      <= std_logic_vector( signed(Feature1_Class1_Data) - signed(Feature1_Class2_Data));
+FX2_Y2_Diff      <= std_logic_vector( signed(Feature2_Class1_Data) - signed(Feature2_Class2_Data));
+FX3_Y3_Diff      <= std_logic_vector( signed(Feature3_Class1_Data) - signed(Feature3_Class2_Data));
+--------------------------------------------------The Kernal Relative Point Feature-----------------------------------------------------
+LABLE_ker_RelativePoimt_REG_F1:reg generic map(n => 17) port map(clk,reg_reset_Kernel_RelativePoint_F,reg_enable_Kernel_RelativePoint_F,FX1_Y1_Diff,FX1_Y1_AfterReg); 
+LABLE_ker_RelativePoimt_REG_F2:reg generic map(n => 17) port map(clk,reg_reset_Kernel_RelativePoint_F,reg_enable_Kernel_RelativePoint_F,FX2_Y2_Diff,FX2_Y2_AfterReg); 
+LABLE_ker_RelativePoimt_REG_F3:reg generic map(n => 17) port map(clk,reg_reset_Kernel_RelativePoint_F,reg_enable_Kernel_RelativePoint_F,FX3_Y3_Diff,FX3_Y3_AfterReg); 
+
+LABLE_Kenel_RelativePoint_FeatureMux:mux4x1 generic map(n => 17) port map(FX1_Y1_AfterReg,FX2_Y2_AfterReg,FX3_Y3_AfterReg,"00000000000000000",Kernal_RelativePoint_Mux_3Feature_Selc,Kernal_RelativePoint_Mux_dataOut); 
+
+-------------------------------------------------The Kernel class Features--------------------------------------------------------------
+LABLE_Kenel_classF1_Mux:mux2x1 generic map(n => 17) port map(Feature1_Class1_Data,Feature1_Class2_Data,Kernal_classF_Mux_Selc,Kernal_classF1_Mux_dataOut); 
+LABLE_Kenel_classF2_Mux:mux2x1 generic map(n => 17) port map(Feature2_Class1_Data,Feature2_Class2_Data,Kernal_classF_Mux_Selc,Kernal_classF2_Mux_dataOut);
+LABLE_Kenel_classF3_Mux:mux2x1 generic map(n => 17) port map(Feature3_Class1_Data,Feature3_Class2_Data,Kernal_classF_Mux_Selc,Kernal_classF3_Mux_dataOut);
+
+LABLE_ker_classF1_REG:reg generic map(n => 17) port map(clk,reg_reset_Kernel_classF,reg_enable_Kernel_classF,Kernal_classF1_Mux_dataOut,Kernal_classF1_Reg_dataOut); 
+LABLE_ker_classF2_REG:reg generic map(n => 17) port map(clk,reg_reset_Kernel_classF,reg_enable_Kernel_classF,Kernal_classF2_Mux_dataOut,Kernal_classF2_Reg_dataOut); 
+LABLE_ker_classF3_REG:reg generic map(n => 17) port map(clk,reg_reset_Kernel_classF,reg_enable_Kernel_classF,Kernal_classF3_Mux_dataOut,Kernal_classF3_Reg_dataOut); 
+
+LABLE_Kenel_class_FeatureMux:mux4x1 generic map(n => 17) port map(Kernal_classF1_Reg_dataOut,Kernal_classF2_Reg_dataOut,Kernal_classF3_Reg_dataOut,"00000000000000000",Kernal_class_Mux_3Feature_Selc,Kernal_classFeature_Mux_dataOut); 
+
+end architecture B4_Kernel_arch;

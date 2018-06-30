@@ -1,0 +1,107 @@
+
+Library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+Entity cacheAcc_1 is
+Generic (CacheAcc_Width : integer := 27; --27 bit(15,12)
+	 Cache_Width : integer := 23;--23 bit (11,12)
+	address_width:integer :=10);
+port (
+	 clk : in std_logic;
+   	 write_enable_cachAcc1 : in std_logic;
+    	 read_enable_cachAcc1 : in std_logic;
+    	 datain_cachAcc1 : in std_logic_vector(Cache_Width-1 downto 0);
+
+   	 DataOut_cachAcc1:out std_logic_vector(CacheAcc_Width-1 downto 0);
+
+    	 reg_reset_chachAcc1: in std_logic;
+         reg_enable_cahcAcc1: in std_logic; --enable is one with write signal
+	 MuxDataIN_SeclAcc1  : in std_logic--Mux before data in coming data or accu. data
+);
+end entity cacheAcc_1;
+
+architecture cacheAcc_arch_1 of cacheAcc_1 is
+component data_Memory is
+	Generic (
+	DATA_Mem_WIDTH: integer := 16;
+	MeM_DEPTH: integer := 16
+	);
+port ( clk : in std_logic;
+write_enable : in std_logic;
+read_enable : in std_logic;
+address: in std_logic_vector(MeM_DEPTH-1 downto 0);
+datain : in std_logic_vector(DATA_Mem_WIDTH - 1  downto 0);
+dataout : out std_logic_vector(DATA_Mem_WIDTH - 1 downto 0)
+);
+end component;
+------------------------------------------------------------------
+component N_bitfulladder is
+Generic (n : integer := 16);
+port
+(a,b:in std_logic_vector(n-1 downto 0);
+f:out std_logic_vector(n-1 downto 0);
+cout:out std_logic
+);
+end component;
+-----------------------------------------------------------------------
+component reg is
+generic(n:integer);
+port(
+	clk,rst,wenable:in std_logic;
+	d:in std_logic_vector(n-1 downto 0);
+	q:out std_logic_vector(n-1 downto 0)
+);
+end component;
+------------------------------------------------------------------------
+component mux2x1 is
+Generic (n:integer);
+port(
+d1:in std_logic_vector(n-1 downto 0);
+d2:in std_logic_vector(n-1 downto 0);
+s:in std_logic;
+q:out std_logic_vector(n-1 downto 0)
+);
+end component;
+
+-----------------------------------------------------------------
+Component Mem_25x900 IS
+	PORT
+	(
+		
+		clock		: IN STD_LOGIC  := '1';
+		wren		: IN STD_LOGIC ;
+		rden		: IN STD_LOGIC  := '1';
+		address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+		data		: IN STD_LOGIC_VECTOR (24 DOWNTO 0);
+		q		: OUT STD_LOGIC_VECTOR (24 DOWNTO 0)
+	);
+END component;
+
+------------------------------------------------------------------------
+signal Sig_datain_cachAcc1:std_logic_vector(CacheAcc_Width-1 downto 0);--data coming from cache
+
+
+signal addressIn_cacheAcc1 :std_logic_vector(9 downto 0);--address in direct to memory
+signal addreIncreas_cahceAcc1 :std_logic_vector(9 downto 0); --address after increament
+
+
+signal dataAcc_cachAcc1 :std_logic_vector( CacheAcc_Width-1 downto 0); 
+signal DataOutSignal_cachAcc1 :std_logic_vector( CacheAcc_Width-1 downto 0);
+signal cout_10: std_logic;
+
+signal dataAcc_MuxOut_cachAcc1 :std_logic_vector( CacheAcc_Width-1 downto 0); --signal after Mux before data in coming data or accu. data
+begin
+
+Sig_datain_cachAcc1<=datain_cachAcc1(datain_cachAcc1'High)&datain_cachAcc1(datain_cachAcc1'High)&datain_cachAcc1(datain_cachAcc1'High)&datain_cachAcc1(datain_cachAcc1'High)&datain_cachAcc1;
+dataAcc_cachAcc1<=std_logic_vector(signed (Sig_datain_cachAcc1)+signed(DataOutSignal_cachAcc1));--27 bit(15,12)
+
+  adderIcreasing:N_bitfulladder generic map(n => 10) port map(addressIn_cacheAcc1,"0000000001", addreIncreas_cahceAcc1, cout_10);
+  regggg	: reg generic map(n => 10) port map(clk,reg_reset_chachAcc1,reg_enable_cahcAcc1,addreIncreas_cahceAcc1,addressIn_cacheAcc1);
+  cacheAcc_MeMo : Mem_25x900 port map(clk,write_enable_cachAcc1, read_enable_cachAcc1,addressIn_cacheAcc1,dataAcc_MuxOut_cachAcc1,DataOutSignal_cachAcc1);
+  MuxDataIn	: mux2x1 generic map(n => CacheAcc_Width) port map(Sig_datain_cachAcc1,dataAcc_cachAcc1,MuxDataIN_SeclAcc1,dataAcc_MuxOut_cachAcc1); 
+  
+ 
+
+DataOut_cachAcc1<=DataOutSignal_cachAcc1;
+end architecture cacheAcc_arch_1;

@@ -1,0 +1,170 @@
+Library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+Entity CV is
+Generic (n:integer:=10;
+	d:integer:=10);
+port( 
+	clk : in std_logic;
+	reset: in std_logic;
+
+	enable_ireg: in std_logic;
+	i: in std_logic_vector(9 downto 0);
+	j: in std_logic_vector(9 downto 0);
+	flag_newIJ: in std_logic;
+
+	read_CVi_enable: in std_logic;
+	read_CVj_enable: in std_logic;
+
+	--Clear_CV: in std_logic;
+
+	Repeated: out std_logic;
+	i_output_Ready: out std_logic_vector(9 downto 0);
+	j_output_Ready: out std_logic_vector(9 downto 0);
+
+	CVcounter: out unsigned(9 downto 0);
+	CV_DataOut_Selc: in std_logic  --- added new 
+
+);
+end entity CV;
+
+architecture arch_CV of CV is
+
+--------------------COMPONENTS INST:-------------------
+
+
+
+Component CVmonitor is
+Generic (Addr_Width :integer:=10);
+port( 
+	clk: 		in std_logic;
+	reset:		in std_logic;
+	flag_newpoint:	in std_logic;   -- a new point has came
+	i: 		in std_logic_vector( 9 downto 0);
+	j: 		in std_logic_vector( 9 downto 0);
+	CV_counter:	in unsigned(9 downto 0);
+
+   requested_address: out std_logic_vector (9 downto 0); --from CV monitor to i and j CV memory
+	Repeated: 	out std_logic;
+	i_rep_Reg: out std_logic_vector( 9 downto 0);
+	j_rep_Reg: out std_logic_vector( Addr_Width-1 downto 0)
+	
+		
+);
+end component CVmonitor;
+
+COMPONENT Mem_10x900 IS
+	PORT
+	(
+		clock		: IN STD_LOGIC  := '1';
+		wren		: IN STD_LOGIC ;
+		rden		: IN STD_LOGIC  := '1';
+		address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+		
+		data		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+		
+		
+		q		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0)
+	);
+END COMPONENT;
+
+SIGNAL Reg_rep_i : std_logic_vector(9 downto 0);
+SIGNAL Reg_rep_j : std_logic_vector(9 downto 0);
+
+
+
+SIGNAL Reg_i : std_logic_vector(9 downto 0);
+SIGNAL Reg_j : std_logic_vector(9 downto 0);
+SIGNAL i_out: std_logic_vector(9 downto 0);
+SIGNAL j_out: std_logic_vector(9 downto 0);
+SIGNAL counter_reg: unsigned(9 downto 0);
+
+SIGNAl req_address: std_logic_vector(9 downto 0);
+SIGNAL address_sig: std_logic_vector(9 downto 0);
+SIGNAL writeEnable_CV: std_logic;
+SIGNAL readEnable_CV: std_logic;
+SIGNAL new_address: std_logic_vector(9 downto 0);
+SIGNAL mem_address: std_logic_vector(9 downto 0);
+SIGNAL flag_newIJ_reg: std_logic;
+SIGNAL read_CV:  std_logic;
+SIGNAL read_address: std_logic_vector(9 downto 0); --sequential read address (trigerred when read_i | read_j)
+
+signal 	i_output: std_logic_vector(9 downto 0);
+signal j_output:  std_logic_vector(9 downto 0);
+Begin
+
+i_output_Ready <= i_output when CV_DataOut_Selc='1' else --- check  it can be removed as the o/p is already registered 
+		i_output;
+j_output_Ready	<= j_output when CV_DataOut_Selc='1' else 
+		j_output;
+
+iCV_mem: Mem_10x900 port map(clk,writeEnable_CV,'1',mem_address,Reg_i,i_out);
+jCV_mem: Mem_10x900 port map(clk,writeEnable_CV,'1',mem_address,Reg_j,j_out);
+Cvmnt: CVmonitor generic map(Addr_Width=>10) port map(clk,reset,flag_newIJ,i_out,j_out,counter_reg,req_address,Repeated,Reg_rep_i,Reg_rep_j);
+
+
+-- HANDLE MEMORY ACCESS ADDRESS:
+-- we have 2 cases:
+--	1- Outside Write: write new point (address is set internally using the counter)
+--	2- Internal Read: sequential read (address is requested internally from the CV monitor)
+-- the first case has the highest periority
+
+--((* Outside Read: read most recent point from the registers)!!  
+read_CV<= read_CVi_enable or read_CVj_enable;
+i_output<=Reg_i when read_CV='1';
+j_output<=Reg_j when read_CV='1';
+
+
+mem_address<=	new_address when flag_newIJ_reg='1' else
+		req_address;
+
+CVcounter<=counter_reg;
+
+--(counter_reg+1)
+
+
+proc: process(clk,new_address,counter_reg,reset) is
+begin
+
+
+	if (reset='1') then
+		--RESET THE SIGNALS TO THE INTIAL VLAUES
+		--Reg_i <=(others=>'0');
+		--Reg_j <=(others=>'0');
+		Reg_i <= Reg_rep_i;
+		Reg_j <= Reg_rep_j;
+		counter_reg<="0000000001"; --change this to 10 bits when mem adjussted
+		--req_address<=(others=>'0');
+		--address_sig<=(others=>'0');
+		flag_newIJ_reg<='0';
+		writeEnable_CV<='1';	
+		new_address<=(others=>'0');
+		--read_address<=(others=>'0');	
+
+	elsif(rising_edge(clk)) then
+			
+		flag_newIJ_reg<=flag_newIJ;
+		writeEnable_CV<='0';
+	
+		if (enable_ireg='1') then 				-- A NEW "I" HAS ARRIVED:
+			Reg_i<= i;					-- Register it (and wait for its j to form a new point
+		end if;
+
+		if (flag_newIJ='1') then 				-- A NEW POINT HAS ARRIVED: (write it in CVmemory)
+			writeEnable_CV<='1'; 				-- enable write CVmemory for the new point to be written
+			new_address<=std_logic_vector(counter_reg);
+			counter_reg<=counter_reg +1;			-- incerement the counter to count the number of existing points
+			Reg_j<=j;
+			flag_newIJ_reg<='1';
+		else
+			writeEnable_CV<='0';				-- OTHERWISE: close the write enable signal (not to write garpage)
+		end if;
+
+
+	end if;
+end process;
+
+
+
+end architecture arch_CV;
