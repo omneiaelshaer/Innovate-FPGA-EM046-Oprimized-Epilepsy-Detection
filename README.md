@@ -10,3 +10,6 @@ Hence, triggering an electric stimuli whenever the seizure is detected to treat 
 
 Provided is the code of the quartus software for the vhdl project, showing the RTL design of our project.
 The training of the SVM was performed by implementing Gilbert's Algorithm. The file integration_file is the top level of the hierarchy.
+
+For further information, you can check our work at the Innovate FPGA website:
+http://www.innovatefpga.com/cgi-bin/innovate/teams.pl?Id=EM046
